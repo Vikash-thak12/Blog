@@ -1,5 +1,8 @@
 import User from "../models/user-model.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const SignUp = async (req, res) => {
     try {
@@ -58,13 +61,17 @@ export const Login = async (req, res) => {
                 message: "Invalid Credentials"
             })
         }
+
+        const token = jwt.sign({user: user._id}, process.env.SECRET_KEY)
+
         return res.status(200).json({
             message: "LoggedIn Successfully",
             user: {
                 user: user._id,
                 name: user.name,
                 email: user.email
-            }
+            },
+            token: token
         })
     } catch (error) {
         console.log("Error while logging..", error)
