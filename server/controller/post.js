@@ -89,5 +89,21 @@ export const updatePost = async (req, res) => {
 }
 
 export const deletePost = async (req, res) => {
-
+    try {
+        const deletePost = await Post.findByIdAndDelete(req.params.id).populate("author")
+        if(!deletePost) {
+            return res.status(404).json({
+                message: "Blog not found"
+            })
+        }
+        return res.status(200).json({
+            message: "Post deleted Successfully",
+            deletePost: deletePost
+        })
+    } catch (error) {
+        console.log("Error while deleting the blog", error)
+        return res.status(500).json({
+            message: "Internal server Error"
+        })
+    }
 }
