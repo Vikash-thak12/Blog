@@ -61,7 +61,31 @@ export const getPostById = async (req, res) => {
 }
 
 export const updatePost = async (req, res) => {
-
+    try {
+        const { id } = req.params;
+        const { title, content, image, tags} = req.body;
+        const blog = await Post.findById(id).populate("author")
+        if(!blog) {
+            return res.status(404).json({
+                message: "Blog not found"
+            })
+        }
+        if(title) blog.title = title;
+        if(content) blog.content = content;
+        if(image) blog.image = image; 
+        if(tags) blog.tags = tags
+    
+        const updatedBlog = await blog.save();
+        return res.status(200).json({
+            message: "Course Updated Successfully",
+            updatedBlog
+        })
+    } catch (error) {
+        console.log("Error while updating the blog", error)
+        return res.status(500).json({
+            message: "Internal Server Error"
+        })
+    }
 }
 
 export const deletePost = async (req, res) => {
