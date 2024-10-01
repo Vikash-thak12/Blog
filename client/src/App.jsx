@@ -1,11 +1,12 @@
 import './App.css'
+import Authentication from './components/Authentication'
 
 function App() {
 
   return (
-    <>
-    <h1>Hey yo</h1>
-    </>
+    <main className='bg-black text-white flex flex-col items-center justify-center h-screen'>
+    <Authentication />
+    </main>
   )
 }
 
