@@ -27,7 +27,7 @@ export const getAllPosts = async (req, res) => {
     try {
         const posts = await Post.find().populate("author", "name");
         if(!posts) {
-            return res.status(401).json({
+            return res.status(404).json({
                 message: "No posts available"
             })
         }
@@ -44,6 +44,20 @@ export const getAllPosts = async (req, res) => {
 }
 
 export const getPostById = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id).populate('author');
+        if(!post) {
+            return res.status(404).json({
+                message: "Post not found"
+            })
+        }
+        return res.status(200).json(post)
+    } catch (error) {
+        console.log("Error while getting a post", error)
+        return res.status(500).json({
+            message: "Internal Server Error"
+        })
+    }
 }
 
 export const updatePost = async (req, res) => {
