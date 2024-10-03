@@ -1,3 +1,5 @@
+import Blog from "./Blog";
+
 const Dashboard = () => {
     const data = ["Science", "Technology", "Environment", "Politics", "GeoGraphy"]
     return (
@@ -24,19 +26,7 @@ const Dashboard = () => {
                     </ul>
                 </div>
                 <div className="border w-full grid grid-cols-4 p-5">
-                    <div className="flex flex-col gap-3 bg-gray-700 rounded-xl">
-                        <div>
-                            <img src="/blog.jpg" alt="blog" className="h-32 w-full object-cover rounded-t-xl" />
-                        </div>
-                        <div className="p-2">
-                            <h2>Bloggle Powerful Blog Builder</h2>
-                            <p className="h-12 line-clamp-2 text-gray-400">RuffRuff Table of Contents helps you improve readability, effective search engine optimization, and understanding of user needs (In combination with a heat-map tool). Automatic table of contents generation and display using the headings in the content. It is the only app that can automatically generate a table of contents for products and collections.Please try it. You can check the actual table of contents from  in the upper left corner.</p>
-                            <div className="flex items-center justify-between">
-                                <p>Author</p>
-                                <p>Created At:</p>
-                            </div>
-                        </div>
-                    </div>
+                    <Blog />
                 </div>
             </div>
         </main>
