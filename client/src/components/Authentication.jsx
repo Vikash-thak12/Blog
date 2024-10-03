@@ -1,56 +1,123 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Authentication = () => {
-    const [toggle, setToggle] = useState(true)
+    const [toggle, setToggle] = useState(true); // Toggle between Login and Signup
+    const [formData, setFormData] = useState({ email: "", name: "", password: "" }); // Form Data
+    const [message, setMessage] = useState(""); // Success/Error message
+    const [error, setError] = useState(""); // Error message
+
+    // Handle input changes
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Handle form submission for Login/Signup
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setMessage("");
+        setError("");
+
+        try {
+            if (toggle) {
+                // LOGIN
+                const response = await axios.post("http://localhost:3000/login", {
+                    email: formData.email,
+                    password: formData.password,
+                });
+                setMessage(response.data.message);
+                // Optionally handle token and store in localStorage
+                localStorage.setItem("token", response.data.token);
+            } else {
+                // SIGNUP
+                const response = await axios.post("http://localhost:3000/signup", {
+                    name: formData.name,
+                    email: formData.email,
+                    password: formData.password,
+                });
+                setMessage(response.data.message);
+            }
+        } catch (err) {
+            setError(err.response?.data?.message || "Something went wrong!");
+        }
+    };
 
     const handleToggle = () => {
-        setToggle((prev) => !prev)
-    }
+        setToggle((prev) => !prev);
+        setFormData({ email: "", name: "", password: "" }); // Clear form when toggling
+        setMessage("");
+        setError("");
+    };
+
     return (
         <div className="w-full">
-            {toggle ? (
-                <form className="border max-w-md mx-auto p-5 rounded-3xl">
-                    <h2 className="text-center font-bold text-3xl py-5">Login Form</h2>
-                    <div className="flex flex-col gap-5">
-                        <div className="flex flex-col gap-2">
-                            <label>Enter Your Email</label>
-                            <input className="p-2 rounded-md outline-none font-semibold text-black" type="email" placeholder="Enter your Email" />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label>Enter Your Password</label>
-                            <input className="p-2 rounded-md outline-none font-semibold text-black" type="password" placeholder="Enter your Password" />
-                        </div>
-                        <button className="bg-white text-black p-3 rounded-lg my-5">Submit</button>
-                        <p className="text-center font-semibold">Didn&apos;t have an Account ? <span onClick={handleToggle} className="underline cursor-pointer">SignUp</span></p>
+            <form className="border max-w-md mx-auto p-5 rounded-3xl" onSubmit={handleSubmit}>
+                <h2 className="text-center font-bold text-3xl py-5">
+                    {toggle ? "Login Form" : "SignUp Page"}
+                </h2>
+                <div className="flex flex-col gap-5">
+                    {/* Email Input */}
+                    <div className="flex flex-col gap-2">
+                        <label>Enter Your Email</label>
+                        <input
+                            className="p-2 rounded-md outline-none font-semibold text-black"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your Email"
+                            required
+                        />
                     </div>
-                </form>
-            ) : (
-                <form className="border max-w-md mx-auto p-5 rounded-3xl">
-                    <h2 className="text-center font-bold text-3xl py-5">SignUp Page</h2>
-                    <div className="flex flex-col gap-5">
-                        <div className="flex flex-col gap-2">
-                            <label>Enter Your Email</label>
-                            <input className="p-2 rounded-md outline-none font-semibold text-black" type="email" placeholder="Enter your Email" />
-                        </div>
 
+                    {/* Name Input (only for Signup) */}
+                    {!toggle && (
                         <div className="flex flex-col gap-2">
                             <label>Enter Your Name</label>
-                            <input className="p-2 rounded-md outline-none font-semibold text-black" type="text" placeholder="Enter your Name" />
+                            <input
+                                className="p-2 rounded-md outline-none font-semibold text-black"
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                placeholder="Enter your Name"
+                                required={!toggle}
+                            />
                         </div>
+                    )}
 
-                        <div className="flex flex-col gap-2">
-                            <label>Enter Your Password</label>
-                            <input className="p-2 rounded-md outline-none font-semibold text-black" type="password" placeholder="Enter your Password" />
-                        </div>
-                        <button className="bg-white text-black p-3 rounded-lg my-5">Submit</button>
-                        <p className="text-center font-semibold">Didn&apos;t have an Account ? <span onClick={handleToggle} className="underline cursor-pointer">SignUp</span></p>
+                    {/* Password Input */}
+                    <div className="flex flex-col gap-2">
+                        <label>Enter Your Password</label>
+                        <input
+                            className="p-2 rounded-md outline-none font-semibold text-black"
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Enter your Password"
+                            required
+                        />
                     </div>
-                </form>
-            )}
 
+                    {/* Submit Button */}
+                    <button className="bg-white text-black p-3 rounded-lg my-5" type="submit">
+                        {toggle ? "Login" : "SignUp"}
+                    </button>
 
+                    {/* Toggle between Login/Signup */}
+                    <p className="text-center font-semibold">
+                        {toggle ? "Don't have an Account?" : "Already have an Account?"}{" "}
+                        <span onClick={handleToggle} className="underline cursor-pointer">
+                            {toggle ? "SignUp" : "Login"}
+                        </span>
+                    </p>
 
+                    {/* Success/Failure Messages */}
+                    {message && <p className="text-green-500 text-center">{message}</p>}
+                    {error && <p className="text-red-500 text-center">{error}</p>}
+                </div>
+            </form>
         </div>
     );
 };
