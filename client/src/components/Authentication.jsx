@@ -51,7 +51,7 @@ const Authentication = () => {
     };
 
     return (
-        <div className="w-full">
+        <div className="w-full mt-20">
             <form className="border max-w-md mx-auto p-5 rounded-3xl" onSubmit={handleSubmit}>
                 <h2 className="text-center font-bold text-3xl py-5">
                     {toggle ? "Login Form" : "SignUp Page"}

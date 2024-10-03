@@ -7,7 +7,7 @@ import Dashboard from './components/Dashboard'
 function App() {
 
   return (
-    <main className='bg-black text-white flex flex-col items-center justify-center h-screen'>
+    <main className='bg-black text-white flex flex-col h-screen'>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Authentication />}/>
