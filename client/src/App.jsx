@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Authentication from './components/Authentication'
 import { Toaster } from "react-hot-toast"
+import Dashboard from './components/Dashboard'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Authentication />}/>
+          <Route path='/dashboard' element={<Dashboard />}/>
         </Routes>
       </BrowserRouter>
       <Toaster />
