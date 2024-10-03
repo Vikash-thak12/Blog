@@ -1,8 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
+
+    const navigate = useNavigate()
+
+
     const [toggle, setToggle] = useState(true); // Toggle between Login and Signup
     const [formData, setFormData] = useState({ email: "", name: "", password: "" }); // Form Data
     // Handle input changes
@@ -23,14 +28,17 @@ const Authentication = () => {
                 toast.success("Logged In Successfully")
                 // Optionally handle token and store in localStorage
                 localStorage.setItem("token", response.data.token);
+                navigate("/dashboard")
             } else {
                 // SIGNUP
-                await axios.post("http://localhost:3000/signup", {
+                const response = await axios.post("http://localhost:3000/signup", {
                     name: formData.name,
                     email: formData.email,
                     password: formData.password,
                 });
+                localStorage.setItem("token", response.data.token);
                 toast.success("User Created Successfully")
+                navigate("/dashboard")
             }
         } catch (err) {
             toast.error(err.response?.data?.message || "Something went wrong!");
