@@ -1,12 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Authentication = () => {
     const [toggle, setToggle] = useState(true); // Toggle between Login and Signup
     const [formData, setFormData] = useState({ email: "", name: "", password: "" }); // Form Data
-    const [message, setMessage] = useState(""); // Success/Error message
-    const [error, setError] = useState(""); // Error message
-
     // Handle input changes
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,9 +13,6 @@ const Authentication = () => {
     // Handle form submission for Login/Signup
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setMessage("");
-        setError("");
-
         try {
             if (toggle) {
                 // LOGIN
@@ -25,28 +20,26 @@ const Authentication = () => {
                     email: formData.email,
                     password: formData.password,
                 });
-                setMessage(response.data.message);
+                toast.success("Logged In Successfully")
                 // Optionally handle token and store in localStorage
                 localStorage.setItem("token", response.data.token);
             } else {
                 // SIGNUP
-                const response = await axios.post("http://localhost:3000/signup", {
+                await axios.post("http://localhost:3000/signup", {
                     name: formData.name,
                     email: formData.email,
                     password: formData.password,
                 });
-                setMessage(response.data.message);
+                toast.success("User Created Successfully")
             }
         } catch (err) {
-            setError(err.response?.data?.message || "Something went wrong!");
+            toast.error(err.response?.data?.message || "Something went wrong!");
         }
     };
 
     const handleToggle = () => {
         setToggle((prev) => !prev);
         setFormData({ email: "", name: "", password: "" }); // Clear form when toggling
-        setMessage("");
-        setError("");
     };
 
     return (
@@ -112,10 +105,6 @@ const Authentication = () => {
                             {toggle ? "SignUp" : "Login"}
                         </span>
                     </p>
-
-                    {/* Success/Failure Messages */}
-                    {message && <p className="text-green-500 text-center">{message}</p>}
-                    {error && <p className="text-red-500 text-center">{error}</p>}
                 </div>
             </form>
         </div>
