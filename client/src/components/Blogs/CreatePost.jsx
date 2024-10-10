@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState("")
     const [tags, setTags] = useState([])
     const [image, setImage] = useState("")
+
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
@@ -25,6 +28,7 @@ const CreatePost = () => {
                 }
             } )
             console.log("The response is:", response.data);
+            navigate("/dashboard")
         } catch (error) {
             console.log("Error while creating post:", error)
         }

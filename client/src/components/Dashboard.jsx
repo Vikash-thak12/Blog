@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Blogs from "./Blogs";
+// import { useEffect } from "react";
+// import axios from "axios";
 
 const Dashboard = () => {
     const data = ["Science", "Technology", "Environment", "Politics", "GeoGraphy", "Computer"]
@@ -7,6 +9,7 @@ const Dashboard = () => {
     const createPost = () => {
         navigate("/dashboard/post")
     }
+
     return (
         <main className="px-10 h-screen overflow-hidden">
             <div className="grid grid-cols-2 md:grid-cols-3 h-72 py-5">

@@ -3,8 +3,8 @@ import './App.css'
 import Authentication from './components/Authentication'
 import { Toaster } from "react-hot-toast"
 import Dashboard from './components/Dashboard'
-import Blog from './components/Blog'
-import CreatePost from './components/posts/CreatePost'
+import CreatePost from './components/Blogs/CreatePost'
+import UpdateBlog from './components/Blogs/UpdateBlog'
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Authentication />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
-          <Route path='/dashboard/:blogId/' element={<Blog />}/>
+          <Route path='/dashboard/:blogId/' element={<UpdateBlog />}/>
           <Route path='/dashboard/post' element={<CreatePost />}/>
         </Routes>
       </BrowserRouter>
