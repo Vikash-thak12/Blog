@@ -3,6 +3,7 @@ import './App.css'
 import Authentication from './components/Authentication'
 import { Toaster } from "react-hot-toast"
 import Dashboard from './components/Dashboard'
+import Blog from './components/Blog'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Authentication />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
+          <Route path='/dashboard/:blogId/' element={<Blog />}/>
         </Routes>
       </BrowserRouter>
       <Toaster />

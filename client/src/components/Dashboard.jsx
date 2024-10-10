@@ -1,7 +1,7 @@
-import Blog from "./Blog";
+import Blogs from "./Blogs";
 
 const Dashboard = () => {
-    const data = ["Science", "Technology", "Environment", "Politics", "GeoGraphy"]
+    const data = ["Science", "Technology", "Environment", "Politics", "GeoGraphy", "Computer"]
     return (
         <main className="px-10 h-screen overflow-hidden">
             <div className="grid grid-cols-2 md:grid-cols-3 h-72 py-5">
@@ -16,7 +16,10 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className="border p-5 flex gap-10">
+            
+
+            {/* Lower Section */}
+            <div className="border p-5 flex gap-10 max-h-96">
                 <div className="">
                     <h2 className="font-bold text-center mb-3">Categories</h2>
                     <ul className="flex flex-col gap-2">
@@ -25,8 +28,8 @@ const Dashboard = () => {
                         ))}
                     </ul>
                 </div>
-                <div className="border w-full grid grid-cols-4 p-5">
-                    <Blog />
+                <div className="w-full grid grid-cols-4 p-5 gap-5 overflow-x-auto">
+                    <Blogs />
                 </div>
             </div>
         </main>

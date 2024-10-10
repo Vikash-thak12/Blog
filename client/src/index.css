@@ -64,3 +64,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* customScrollbar.css */
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: gray; /* Color of the scrollbar track */
+  border-radius: 50px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 50px; /* Rounded corners */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: black gray; /* Thumb and track colors */
+}
