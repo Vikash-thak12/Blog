@@ -18,10 +18,12 @@ const authMiddleware = async (req, res, next) => {
     try {
         // Verify the token
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
-        console.log("Decoded token:", decoded);
+        // console.log("Decoded token:", decoded);
 
         // Attach user information to the request object
-        req.user = decoded.id; // You can also include other relevant data from decoded if needed
+        req.user = decoded.user; // in req.user i'm getting the user ID from mongoDB
+        // console.log("The user is:", req.user);
+        
         next(); // Proceed to the next middleware or route handler
     } catch (error) {
         console.error("Error while authenticating", error);
