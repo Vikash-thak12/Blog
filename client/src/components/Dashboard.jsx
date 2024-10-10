@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import Blogs from "./Blogs";
 
 const Dashboard = () => {
     const data = ["Science", "Technology", "Environment", "Politics", "GeoGraphy", "Computer"]
+    const navigate = useNavigate();
+    const createPost = () => {
+        navigate("/dashboard/post")
+    }
     return (
         <main className="px-10 h-screen overflow-hidden">
             <div className="grid grid-cols-2 md:grid-cols-3 h-72 py-5">
@@ -12,7 +17,7 @@ const Dashboard = () => {
                     <div className="border p-5 h-full w-full flex flex-col items-center justify-center gap-5">
                         <h1 className="font-bold text-3xl">Vikash Thakur</h1>
                         <h2 className="font-semibold text-2xl">Your Blogs: 12</h2>
-                        <button className="border p-2 rounded-md font-bold">Create Another Blog</button>
+                        <button className="border p-2 rounded-md font-bold" onClick={createPost}>Create Another Blog</button>
                     </div>
                 </div>
             </div>

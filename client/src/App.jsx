@@ -4,6 +4,7 @@ import Authentication from './components/Authentication'
 import { Toaster } from "react-hot-toast"
 import Dashboard from './components/Dashboard'
 import Blog from './components/Blog'
+import CreatePost from './components/posts/CreatePost'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<Authentication />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='/dashboard/:blogId/' element={<Blog />}/>
+          <Route path='/dashboard/post' element={<CreatePost />}/>
         </Routes>
       </BrowserRouter>
       <Toaster />
