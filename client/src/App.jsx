@@ -4,7 +4,7 @@ import Authentication from './components/Authentication'
 import { Toaster } from "react-hot-toast"
 import Dashboard from './components/Dashboard'
 import CreatePost from './components/Blogs/CreatePost'
-import Blog from './components/Blogs/Blog'
+// import Blog from './components/Blogs/Blog'
 import UpdateBlog from './components/Blogs/UpdateBlog'
 
 function App() {
