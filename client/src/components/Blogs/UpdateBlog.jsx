@@ -29,6 +29,7 @@ const UpdateBlog = () => {
         if (blog.data) {
           setBlog(blog.data)
         }
+        console.log("The blog of mine is:",blog.data)
         console.log("the blog author is:", blog.data.author._id) // getting the blog author
         const blogAuthor = blog.data.author._id;
         const loggedInUser = localStorage.getItem('author');
@@ -106,12 +107,12 @@ const UpdateBlog = () => {
             }
             <div className="p-2">
               <div className="flex items-center justify-between">
-                <p>Author: {blogData.author.name}</p>
-                <p>Created At: <span>{DateFormat(blogData.createdAt)}</span></p>
+                <p>Author: {blog.author.name}</p>
+                <p>Created At: <span>{DateFormat(blog.createdAt)}</span></p>
               </div>
               <div>
-                <h1 className="line-clamp-1">{blogData.title}</h1>
-                <p className="h-12 line-clamp-2 text-gray-400">{blogData.content}</p>
+                <h1 className="line-clamp-1">{blog.title}</h1>
+                <p className="h-12 line-clamp-2 text-gray-400">{blog.content}</p>
               </div>
             </div>
           </div>
