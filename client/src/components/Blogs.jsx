@@ -46,7 +46,7 @@ const Blogs = () => {
                             <p className="h-12 line-clamp-2 text-gray-400">{item.content}</p>
                             <div className="">
                                 <p>Author: {item.author.name}</p>
-                                <p>Created At: <span>{DateFormat(item.createdAt)}</span></p>
+                                <p><span>{DateFormat(item.createdAt)}</span></p>
                             </div>
                         </div>
                     </div>

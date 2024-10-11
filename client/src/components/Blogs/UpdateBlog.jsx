@@ -86,7 +86,7 @@ const UpdateBlog = () => {
         toggle ? (
           <div className="flex flex-col gap-3 bg-gray-700 rounded-xl cursor-pointer mt-5">
             <div>
-              <img src={blog.image} alt="blog" className="h-96 w-full object-cover rounded-t-xl" />
+              <img src={blog.image} alt="blog" className="h-96 w-full rounded-t-xl object-cover" />
             </div>
             {
               isAuthor &&
