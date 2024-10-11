@@ -36,7 +36,7 @@ const UpdateBlog = () => {
         // console.log("The loggedIn user is:", loggedInUser)
         if (loggedInUser === blogAuthor) {
           setIsAuthor(true)
-        } 
+        }
       } catch (error) {
         console.log("Error while getting the Blog", error)
       }
@@ -89,8 +89,16 @@ const UpdateBlog = () => {
               <img src={blog.image} alt="blog" className="h-96 w-full object-cover rounded-t-xl" />
             </div>
             {
-              isAuthor && 
-            <button className="border p-3 flex justify-start" onClick={handletoggle}>Edit</button>
+              isAuthor &&
+              <div className="flex items-center justify-between p-2">
+                <button className="bg-gray-500 px-5 py-4 text-white font-bold rounded-xl" onClick={handletoggle}>Edit</button>
+                <button
+                  className="bg-red-600 px-5 py-4 text-white font-bold rounded-xl"
+                  onClick={handleDelete}
+                >
+                  Delete Blog
+                </button>
+              </div>
             }
             <div className="p-2">
               <div className="flex items-center justify-between">
@@ -104,33 +112,26 @@ const UpdateBlog = () => {
             </div>
           </div>
         ) : (
-          <form className="flex flex-col gap-2 mb-10">
-            <input
-              className="border-2 outline-none font-semibold border-black px-5 py-2 rounded-xl text-black"
-              type="text" placeholder="Enter Title" value={blog.title} onChange={(e) => setBlog({ ...blog, title: e.target.value })} required />
-            <input
-              className="border-2 outline-none font-semibold border-black px-5 py-2 rounded-xl text-black"
-              type="text" placeholder="Enter description" value={blog.content} onChange={(e) => setBlog({ ...blog, content: e.target.value })} required />
-            <input
-              className="border-2 outline-none font-semibold border-black px-5 py-2 rounded-xl text-black"
-              type="text" placeholder="Enter Tags" value={blog.tags} onChange={(e) => setBlog({ ...blog, tags: e.target.value })} required />
-            <input
-              className="border-2 outline-none font-semibold border-black px-5 py-2 rounded-xl text-black"
-              type="text" placeholder="Enter Image Link" value={blog.image} onChange={(e) => setBlog({ ...blog, image: e.target.value })} required />
-            <div className="flex items-center justify-center gap-10">
-              <button className="bg-blue-600 px-5 py-3 rounded-2xl text-white font-bold" type="submit" onClick={handleSubmit}>Submit</button>
-              {
-                isAuthor && (
-                  <button
-                    className="bg-red-600 px-5 py-3 text-white font-bold rounded-xl"
-                    onClick={handleDelete}
-                  >
-                    Delete Blog
-                  </button>
-                )
-              }
-            </div>
-          </form>
+          <div className="flex items-center justify-center min-h-screen">
+            <form className="flex flex-col gap-2 mb-10 border w-[30%] px-3 py-5 bg-gray-600 rounded-2xl">
+              <h1 className="text-center font-bold text-2xl">Update Post</h1>
+              <input
+                className="border-2 outline-none font-semibold border-black px-5 py-4 rounded-xl text-black"
+                type="text" placeholder="Enter Title" value={blog.title} onChange={(e) => setBlog({ ...blog, title: e.target.value })} required />
+              <input
+                className="border-2 outline-none font-semibold border-black px-5 py-4 rounded-xl text-black"
+                type="text" placeholder="Enter description" value={blog.content} onChange={(e) => setBlog({ ...blog, content: e.target.value })} required />
+              <input
+                className="border-2 outline-none font-semibold border-black px-5 py-4 rounded-xl text-black"
+                type="text" placeholder="Enter Tags" value={blog.tags} onChange={(e) => setBlog({ ...blog, tags: e.target.value })} required />
+              <input
+                className="border-2 outline-none font-semibold border-black px-5 py-4 rounded-xl text-black"
+                type="text" placeholder="Enter Image Link" value={blog.image} onChange={(e) => setBlog({ ...blog, image: e.target.value })} required />
+              <div className="flex items-center justify-center gap-10">
+                <button className="bg-blue-600 px-5 py-4 rounded-2xl text-white font-bold" type="submit" onClick={handleSubmit}>Submit</button>
+              </div>
+            </form>
+          </div>
         )
       }
 
