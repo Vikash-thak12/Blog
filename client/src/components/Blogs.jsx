@@ -31,28 +31,27 @@ const Blogs = () => {
         };
 
         fetchData();
-    },[])
-    
+    }, [])
+
     return (
         <>
-        {
-            posts.map((item, index) => (
-                <div className="flex flex-col gap-3 bg-gray-700 rounded-xl cursor-pointer" key={index} onClick={() => handleBlog(item._id)}>
-                <div>
-                    <img src={item.image} alt="blog" className="h-32 w-full object-cover rounded-t-xl" />
-                </div>
-                <div className="p-2">
-                    <h1 className="line-clamp-1">{item.title}</h1>
-                    <p className="h-12 line-clamp-2 text-gray-400">{item.content}</p>
-                    <div className="">
-                        <p>Author: {item.author.name}</p>
-                        {/* <p>Created At: <span>{item.createdAt}</span></p> */}
-                        <p>Created At: <span>{DateFormat(item.createdAt)}</span></p>
+            {
+                posts.map((item, index) => (
+                    <div className="flex flex-col gap-3 bg-gray-700 rounded-xl cursor-pointer" key={index} onClick={() => handleBlog(item._id)}>
+                        <div>
+                            <img src={item.image} alt="blog" className="h-32 w-full object-cover rounded-t-xl" />
+                        </div>
+                        <div className="p-2">
+                            <h1 className="line-clamp-1">{item.title}</h1>
+                            <p className="h-12 line-clamp-2 text-gray-400">{item.content}</p>
+                            <div className="">
+                                <p>Author: {item.author.name}</p>
+                                <p>Created At: <span>{DateFormat(item.createdAt)}</span></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            ))
-        }
+                ))
+            }
 
         </>
     );

@@ -28,17 +28,25 @@ const Authentication = () => {
                 toast.success("Logged In Successfully")
                 // Optionally handle token and store in localStorage
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("author", response.data.user.user);
+                // console.log("The Login Author is:", response.data.user.user)
                 navigate("/dashboard")
             } else {
                 // SIGNUP
-                const response = await axios.post("http://localhost:3000/signup", {
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password,
-                });
-                localStorage.setItem("token", response.data.token);
-                toast.success("User Created Successfully")
-                navigate("/dashboard")
+                try {
+                    const response = await axios.post("http://localhost:3000/signup", {
+                        name: formData.name,
+                        email: formData.email,
+                        password: formData.password,
+                    });
+                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("author", response?.data?.User?.id);
+                    console.log("The Signup Author is:", response.data.User.id) // here getting the blog author Id
+                    toast.success("User Created Successfully")
+                    navigate("/dashboard")
+                } catch (error) {
+                    console.log("Error while signup:", error)
+                }
             }
         } catch (err) {
             toast.error(err.response?.data?.message || "Something went wrong!");

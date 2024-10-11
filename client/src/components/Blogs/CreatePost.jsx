@@ -15,13 +15,15 @@ const CreatePost = () => {
         e.preventDefault();
 
         const tagsArray = tags.split(',').map(tag => tag.trim());
+        // const author = localStorage.getItem("author")
+
 
         try {
             const response = await axios.post("http://localhost:3000/posts", {
                 title, 
                 content, 
                 tags: tagsArray,
-                image
+                image,
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
