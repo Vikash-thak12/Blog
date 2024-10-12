@@ -1,15 +1,11 @@
 import { useNavigate } from "react-router-dom";
-// import { blogData } from "../data.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DateFormat from "./DateFormat";
 
 const Blogs = () => {
-    // const data = blogData;
     const [posts, setPosts] = useState([])
-    // console.log("The datas are:", data);
     const navigate = useNavigate();
-
     const handleBlog = (id) => {
         navigate(`/dashboard/${id}`)
     }
