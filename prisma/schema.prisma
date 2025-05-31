@@ -34,9 +34,27 @@ model Articles {
   author        User     @relation(fields: [authorId], references: [id])
   authorId      String
   comments Comment[]
-  likes like[]
+  likes Like[]
   createdAt DateTime @default(now())
 }
 
+model Comment{
+  id String @id @default(cuid())
+  body String
+  author User @relation(fields: [authorId], references: [id])
+  authorId String 
+  article Articles @relation(fields: [articleId], references: [id])
+  articleId String
+  createdAt DateTime @default(now())
+}
 
+model Like{
+  id String @id @default(cuid())
+  author User @relation(fields: [authorId], references: [id])
+  authorId String 
+  article Articles @relation(fields: [articleId], references: [id])
+  articleId String
+  createdAt DateTime @default(now())
 
+  @@unique([authorId, articleId])   // Ensure the user can like the article only once 
+}
