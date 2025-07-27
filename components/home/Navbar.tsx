@@ -6,7 +6,7 @@ import ToggleMode from './toggleMode'
 
 const Navbar = () => {
     return (
-        <div className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-2xl'>
+        <div className='sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
             <div className='flex items-center justify-between px-4 py-4'>
 
                 {/* left section */}
