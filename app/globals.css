@@ -6,7 +6,7 @@
 /* styles/globals.css */
 
 ::-webkit-scrollbar {
-  width: 8px; /* thick scrollbar */
+  width: 8px; 
 }
 
 ::-webkit-scrollbar-track {
@@ -15,7 +15,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: #555; /* dark thumb */
-  border-radius: 6px;
+  border-radius: 8px;
   border: 2px solid #1e1e1e; /* gives spacing look */
 }
 
