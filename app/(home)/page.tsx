@@ -1,3 +1,4 @@
+import BlogFooter from '@/components/home/blogFooter';
 import HeroSection from '@/components/home/herosection';
 import Navbar from '@/components/home/Navbar';
 import { TopArticles } from '@/components/home/topArticles';
@@ -35,6 +36,7 @@ const page = () => {
           </div>
         </div>
       </section>
+      <BlogFooter />
     </div>
   )
 }
