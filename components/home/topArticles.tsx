@@ -28,7 +28,7 @@ export async function TopArticles() {
                         </div>
 
                         {/* Author Info */}
-                        <div className="shadow-md shadow-gray-500 rounded-2xl p-2">
+                        <div className="shadow-sm shadow-gray-500 rounded-2xl p-2">
                             <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
                                 <Avatar className="h-8 w-8">
                                     <AvatarImage src={"https://images.unsplash.com/photo-1682685797736-dabb341dc7de?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} />
