@@ -1,7 +1,9 @@
+import CreateArticle from "@/components/article/create-article"
+
 const page = () => {
   return (
     <div>
-      create your own articles
+      <CreateArticle />
     </div>
   )
 }
