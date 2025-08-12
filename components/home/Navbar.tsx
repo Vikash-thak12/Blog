@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Button } from '../ui/button'
 import SearchInput from './searchInput'
 import ToggleMode from './toggleMode'
-import { X, Menu, Search, Flag } from 'lucide-react'
+import { X, Menu, Search} from 'lucide-react'
 import { Input } from '../ui/input'
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
 

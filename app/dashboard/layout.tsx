@@ -1,4 +1,5 @@
 import LeftSideBar from '@/components/dashboard/leftSide'
+import ToggleMode from '@/components/home/toggleMode';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className='min-h-screen w-full'>
+        <div className='min-h-screen w-full relative'>
             <div className='flex'>
                 <LeftSideBar />
                 <div className='flex-1'>
