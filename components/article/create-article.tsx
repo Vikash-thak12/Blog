@@ -47,7 +47,7 @@ const CreateArticle = () => {
 
                         <div className='space-y-2'>
                             <label>Content</label>
-                            <ReactQuill theme="snow" value={content} onChange={setContent} />;
+                            <ReactQuill theme="snow" value={content} onChange={setContent} />
                         </div>
 
                         <div className='flex justify-end gap-2'>
