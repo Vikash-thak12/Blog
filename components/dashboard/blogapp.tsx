@@ -1,12 +1,31 @@
-import { FileText, MessageCircle, PlusCircle } from 'lucide-react'
+import { Clock, FileText, MessageCircle, PlusCircle } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import RecentArticles from './recentArticles'
+import { prisma } from '@/lib/prisma'
 
 
-const BlogApp = () => {
+const BlogApp = async () => {
+  const[articles, totalcomments] = await Promise.all([
+    prisma.articles.findMany({
+      orderBy: {
+        createdAt: "desc"
+      }, 
+      include: {
+        comments: true,
+        author: {
+          select: {
+            name: true, 
+            email: true, 
+            imageUrl: true
+          }
+        }
+      }
+    }), 
+    prisma.comment.count()
+  ])
   return (
     <main className='flex-1 p-4'>
       <div className='flex items-center justify-between'>
@@ -27,7 +46,7 @@ const BlogApp = () => {
             <FileText />
           </CardHeader>
           <CardContent>
-            <div>23 Articles</div>
+            <div>{articles.length}</div>
             <p>+5 from last months.</p>
           </CardContent>
         </Card>
@@ -38,7 +57,7 @@ const BlogApp = () => {
             <MessageCircle />
           </CardHeader>
           <CardContent>
-            <div>5 Comments</div>
+            <div>{totalcomments}</div>
             <p>+2 last week.</p>
           </CardContent>
         </Card>
@@ -46,7 +65,7 @@ const BlogApp = () => {
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-0 py-2'>
             <CardTitle>Average Rating</CardTitle>
-            <FileText />
+            <Clock />
           </CardHeader>
           <CardContent>
             <div>3.5</div>
@@ -56,7 +75,7 @@ const BlogApp = () => {
       </div>
 
       {/* RecentArticles */}
-      <RecentArticles />
+      <RecentArticles articles={articles} />
     </main>
   )
 }
