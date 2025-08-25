@@ -116,7 +116,7 @@ export const EditArticle = async (articleId: string, prevState: CreateformArticl
         } catch (error) {
             return {
                 errors: {
-                    formErrors:["Failed to upload image.."]
+                    formErrors:["Failed to upload image..", error as string]
                 }
             }
         }
